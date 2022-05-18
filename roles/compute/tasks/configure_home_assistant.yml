@@ -1,0 +1,10 @@
+---
+- name: Copy services configuration
+  copy:
+    src: files/home-assistant
+    dest: "{{ docker_compose_dir }}"
+
+- name: Start services
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/home-assistant"
+    restarted: true

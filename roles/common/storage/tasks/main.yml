@@ -1,0 +1,20 @@
+---
+- name: Install NFS commons
+  apt:
+    name: nfs-common
+
+- name: Configure storage user
+  user:
+    name: "{{ storage_user_name }}"
+    uid: "{{ storage_user_uid }}"
+    state: present
+    comment: The user used remote storage
+
+- name: Configure the service shares
+  mount:
+    state: mounted
+    fstype: nfs
+    path: "{{ item.path }}"
+    src: "{{ storage_host }}:{{ item.src }}"
+    opts: rw,nolock
+  loop: "{{ storage_directories }}"

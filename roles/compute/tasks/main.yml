@@ -1,0 +1,13 @@
+---
+- include_tasks: 
+    file: "{{ task_file }}"
+    apply:
+      tags: deployment
+  tags: deployment
+  loop:
+    - "configure_traefik.yml"
+    - "configure_nextcloud.yml"
+    - "configure_unifi.yml"
+    - "configure_home_assistant.yml"
+  loop_control:
+    loop_var: task_file

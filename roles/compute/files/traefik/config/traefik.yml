@@ -1,0 +1,43 @@
+---
+
+log:
+  level: DEBUG
+
+serversTransport:
+  insecureSkipVerify: true
+
+providers:
+  docker:
+    network: "traefik_public"
+    defaultRule: "Host(`{% raw %}{{ index .Labels `homelab.sub-domain` }}{% endraw %}.{{ domain }}`)"
+    exposedByDefault: false
+
+  file:
+    directory: "/config/dynamic"
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: "websecure"
+          scheme: "https"
+
+  websecure:
+    address: ":443"
+    http:
+      tls:
+        certResolver: "lecf"
+        domains:
+          - main: "{{ domain }}"
+            sans:
+              - "{{ domain_wildcard }}"
+
+certificatesResolvers:
+  lecf:
+    acme:
+      email: "{{ secret_traefik_lets_encrypt_email }}"
+      storage: "/acme/acme.json"
+      dnsChallenge:
+        provider: "cloudflare"

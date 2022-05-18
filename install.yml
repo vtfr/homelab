@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  roles:
+    - common/infrastructure
+
+- hosts: plex
+  become: yes
+  roles:
+    - common/storage
+    - plex
+
+- hosts: compute
+  become: yes
+  roles:
+    - common/docker
+    - compute

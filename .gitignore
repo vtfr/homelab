@@ -1,0 +1,5 @@
+# Intellij IDEA files
+.idea/
+
+# Vault password file
+.vault.pass

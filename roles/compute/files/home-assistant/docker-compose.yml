@@ -1,0 +1,24 @@
+---
+version: "3.9"
+
+volumes:
+  config:
+
+networks:
+  traefik_public:
+    external: true
+
+services:
+  home-assistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    networks:
+      - traefik_public
+    volumes:
+      - config:/config
+      - ./config/configuration.yml:/config/configuration.yml:ro
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+      - "homelab.sub-domain=hass"
+    restart: unless-stopped

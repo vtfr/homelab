@@ -1,0 +1,32 @@
+---
+version: "3.9"
+
+networks:
+  public:
+
+volumes:
+  acme:
+
+services:
+  traefik:
+    image: traefik:v2.7
+    restart: unless-stopped
+    networks:
+      - public
+    volumes:
+      # Static and dynamic configurations
+      - "./config/traefik.yml:/etc/traefik/traefik.yml:ro"
+      - "./config/dynamic:/config/dynamic:ro"
+
+      # SSL private keys for Lets Encryps
+      - "acme:/acme"
+
+      # Docker socket for docker provider
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - "CF_API_EMAIL={{ traefik_cf_api_email }}"
+      - "CF_API_KEY={{ traefik_cf_api_key }}"
+      - "CF_DNS_API_TOKEN={{ traefik_cf_dns_api_token }}"

@@ -1,0 +1,16 @@
+---
+docker_compose_dir: "~"
+
+domain: "{{ secret_domain }}"
+domain_wildcard: "{{ secret_domain_wildcard }}"
+
+storage_host: "truenas.home.lan"
+storage_directories: "{{ secret_storage_directories }}"
+
+storage_user_uid: "1010"
+storage_user_name: "services"
+
+traefik_cf_api_email: "{{ secret_traefik_cf_api_email }}"
+traefik_cf_api_key: "{{ secret_traefik_cf_api_key }}"
+traefik_cf_dns_api_token: "{{ secret_traefik_cf_dns_api_token }}"
+traefik_lets_encrypt_email: "{{ secret_traefik_lets_encrypt_email }}"
