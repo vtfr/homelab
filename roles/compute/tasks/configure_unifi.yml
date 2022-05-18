@@ -1,10 +1,7 @@
 ---
-- name: Copy services configuration
+- name: Copy unifi configuration
   copy:
     src: files/unifi
     dest: "{{ docker_compose_dir }}"
+  notify: restart unify
 
-- name: Start services
-  community.docker.docker_compose:
-    project_src: "{{ docker_compose_dir }}/unifi"
-    restarted: true

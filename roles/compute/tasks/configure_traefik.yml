@@ -1,5 +1,5 @@
 ---
-- name: Create directories
+- name: Create traefik directories
   file:
     path: "{{ docker_compose_dir }}/traefik/{{ item.path }}"
     state: directory
@@ -7,14 +7,10 @@
   with_community.general.filetree: traefik/
   when: item.state == 'directory'
 
-- name: Template configuration files
+- name: Template traefik configuration files
   template:
     src: "{{ item.src }}"
     dest: "{{ docker_compose_dir }}/traefik/{{ item.path }}"
   with_community.general.filetree: traefik/
   when: item.state == 'file'
-
-- name: Start traefik services
-  community.docker.docker_compose:
-    project_src: "{{ docker_compose_dir }}/traefik"
-    restarted: true
+  notify: restart traefik

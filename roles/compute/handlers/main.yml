@@ -1,0 +1,20 @@
+---
+- name: restart home-assistant
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/home-assistant"
+    restarted: true
+
+- name: restart nextcloud
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/nextcloud"
+    restarted: yes
+
+- name: restart traefik
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/traefik"
+    restarted: true
+
+- name: restart unify
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/unifi"
+    restarted: true
