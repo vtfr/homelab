@@ -17,7 +17,7 @@
 
 - name: Copy plex ufw configuration file
   copy:
-    src: files/plexmediaserver.toml
+    src: files/plexmediaserver
     dest: /etc/ufw/applications.d/plexmediaserver
 
 - name: Enable plex ufw rules
