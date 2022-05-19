@@ -14,3 +14,6 @@ traefik_cf_api_email: "{{ secret_traefik_cf_api_email }}"
 traefik_cf_api_key: "{{ secret_traefik_cf_api_key }}"
 traefik_cf_dns_api_token: "{{ secret_traefik_cf_dns_api_token }}"
 traefik_lets_encrypt_email: "{{ secret_traefik_lets_encrypt_email }}"
+
+experiments_postgres_user: "{{ secret_experiments_postgres_user }}"
+experiments_postgres_pass: "{{ secret_experiments_postgres_pass }}"

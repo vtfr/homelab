@@ -18,3 +18,4 @@
     - { role: deployment, project: nextcloud }
     - { role: deployment, project: unifi }
     - { role: deployment, project: heimdall }
+    - { role: deployment, project: experiments }
