@@ -4,4 +4,3 @@
     src: files/heimdall
     dest: "{{ docker_compose_dir }}"
   notify: restart heimdall
-
