@@ -1,0 +1,11 @@
+http:
+  routers:
+    truenas:
+      rule: "Host(`truenas.{{ domain }}`)"
+      service: "truenas"
+
+  services:
+    truenas:
+      loadBalancer:
+        servers:
+        - url: "http://{{ storage_host }}"

@@ -1,5 +1,8 @@
 # Intellij IDEA files
 .idea/
 
+# VS Code files
+.vscode
+
 # Vault password file
 .vault.pass

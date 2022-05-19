@@ -1,0 +1,11 @@
+http:
+  routers:
+    pve:
+      rule: "Host(`pve.{{ domain }}`)"
+      service: "pve"
+
+  services:
+    pve:
+      loadBalancer:
+        servers:
+        - url: "https://pve.home.lan:8006"

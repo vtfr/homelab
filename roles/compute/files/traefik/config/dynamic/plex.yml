@@ -1,0 +1,11 @@
+http:
+  routers:
+    plex:
+      rule: "Host(`plex.{{ domain }}`)"
+      service: "plex"
+
+  services:
+    plex:
+      loadBalancer:
+        servers:
+        - url: "http://plex.home.lan:32400"

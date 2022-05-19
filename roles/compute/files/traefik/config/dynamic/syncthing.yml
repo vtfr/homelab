@@ -1,0 +1,20 @@
+http:
+  middlewares:
+    syncthing-redirect-root:
+      redirectRegex:
+        regex: "^(https?://[^/]+)/?$"
+        replacement: "${1}/syncthing/"
+        permanent: true
+
+  routers:
+    syncthing:
+      rule: "Host(`syncthing.{{ domain }}`)"
+      service: "syncthing"
+      middlewares:
+        - syncthing-redirect-root
+
+  services:
+    syncthing:
+      loadBalancer:
+        servers:
+        - url: "http://syncthing.home.lan"
