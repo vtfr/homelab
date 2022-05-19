@@ -7,7 +7,6 @@
       - gnupg
       - lsb-release
     state: present
-    update_cache: yes
 
 - name: Install docker official GPG key
   apt_key:
@@ -17,7 +16,8 @@
 - name: Add docker stable repository
   apt_repository:
     repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    state: present  
+    state: present
+    update_cache: yes
 
 - name: Install docker engine
   apt:
@@ -25,7 +25,6 @@
     - docker-ce
     - docker-ce-cli
     state: present
-    update_cache: yes
 
 - name: Install pip
   apt:
@@ -37,3 +36,4 @@
     name:
       - docker
       - docker-compose
+    state: present
