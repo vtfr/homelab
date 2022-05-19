@@ -13,4 +13,8 @@
   become: yes
   roles:
     - common/docker
-    - compute
+    - { role: deployment, project: traefik }
+    - { role: deployment, project: hass }
+    - { role: deployment, project: nextcloud }
+    - { role: deployment, project: unifi }
+    - { role: deployment, project: heimdall }

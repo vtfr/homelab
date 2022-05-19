@@ -1,6 +1,0 @@
----
-- name: Copy home-assistant services configuration
-  copy:
-    src: files/home-assistant
-    dest: "{{ docker_compose_dir }}"
-  notify: restart home-assistant

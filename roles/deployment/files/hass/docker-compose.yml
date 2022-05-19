@@ -15,7 +15,7 @@ services:
       - traefik_public
     volumes:
       - config:/config
-      - ./config/configuration.yml:/config/configuration.yml:ro
+      - ./s6/run:/etc/services.d/home-assistant/run
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=true"

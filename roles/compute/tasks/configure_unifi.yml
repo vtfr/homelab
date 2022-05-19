@@ -1,7 +1,0 @@
----
-- name: Copy unifi configuration
-  copy:
-    src: files/unifi
-    dest: "{{ docker_compose_dir }}"
-  notify: restart unify
-
