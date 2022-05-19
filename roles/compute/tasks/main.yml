@@ -9,5 +9,6 @@
     - "configure_nextcloud.yml"
     - "configure_unifi.yml"
     - "configure_home_assistant.yml"
+    - "configure_heimdall.yml"
   loop_control:
     loop_var: task_file

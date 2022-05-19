@@ -18,3 +18,8 @@
   community.docker.docker_compose:
     project_src: "{{ docker_compose_dir }}/unifi"
     restarted: true
+
+- name: restart heimdall
+  community.docker.docker_compose:
+    project_src: "{{ docker_compose_dir }}/heimdall"
+    restarted: true
