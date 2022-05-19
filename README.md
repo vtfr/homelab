@@ -1,3 +1,3 @@
 # Homelab
 
-This project contains the ansible playlists for my homelab.
+This project contains the ansible playbooks for my homelab.
