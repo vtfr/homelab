@@ -1,5 +1,11 @@
 ---
-- name: Create {{ project }} directories
+- name: Create {{ project }} root directory
+  file:
+    path: "{{ docker_compose_dir }}/{{ project }}"
+    state: directory
+  tags: deployment
+
+- name: Create {{ project }} sub directories
   file:
     path: "{{ docker_compose_dir }}/{{ project }}/{{ item.path }}"
     state: directory
