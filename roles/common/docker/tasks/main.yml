@@ -43,3 +43,9 @@
     plugin_name: grafana/loki-docker-driver:latest
     state: enable
     alias: loki
+
+- name: Configure loki as the default docker logger
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+  notify: restart docker
