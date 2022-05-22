@@ -9,7 +9,7 @@ volumes:
 
 networks:
   database:
-  traefik_public:
+  traefik-public:
     external: true
 
 services:
@@ -30,7 +30,7 @@ services:
     image: nextcloud
     networks:
       - database
-      - traefik_public
+      - traefik-public
     environment:
       - POSTGRES_HOST=postgres
       - POSTGRES_USER=nextcloud

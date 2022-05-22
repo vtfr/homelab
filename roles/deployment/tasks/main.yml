@@ -1,4 +1,11 @@
 ---
+- name: Create networks
+  community.docker.docker_network:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ networks | default([]) }}"
+  tags: deployment
+
 - name: Create {{ project }} root directory
   file:
     path: "{{ docker_compose_dir }}/{{ project }}"

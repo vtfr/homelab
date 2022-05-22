@@ -2,7 +2,7 @@
 version: "3.9"
 
 networks:
-  traefik_public:
+  traefik-public:
     external: true
 
 volumes:
@@ -12,17 +12,17 @@ services:
   unifi-controller:
     image: lscr.io/linuxserver/unifi-controller
     networks:
-      - traefik_public
+      - traefik-public
     environment:
       - PUID=1000
       - PGID=1000
     volumes:
       - config:/config
     ports:
-      - 3478:3478/udp   # Unifi STUN port
-      - 10001:10001/udp # Required for AP discovery
-      - 8080:8080       # Required for device communication
-      - 1900:1900/udp   # Required for controller discoverability on L2 network
+      - "3478:3478/udp"   # Unifi STUN port
+      - "10001:10001/udp" # Required for AP discovery
+      - "8080:8080"       # Required for device communication
+      - "1900:1900/udp"   # Required for controller discoverability on L2 network
     restart: unless-stopped
     labels:
       - "traefik.enable=true"

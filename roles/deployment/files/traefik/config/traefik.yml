@@ -8,7 +8,7 @@ serversTransport:
 
 providers:
   docker:
-    network: "traefik_public"
+    network: "traefik-public"
     defaultRule: "Host(`{% raw %}{{ index .Labels `homelab.sub-domain` }}{% endraw %}.{{ domain }}`)"
     exposedByDefault: false
 

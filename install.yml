@@ -13,8 +13,8 @@
   become: yes
   roles:
     - common/docker
+    - { role: deployment, project: traefik, networks: [ "traefik-public" ] }
     - { role: deployment, project: monitoring }
-    - { role: deployment, project: traefik }
     - { role: deployment, project: hass }
     - { role: deployment, project: nextcloud }
     - { role: deployment, project: unifi }

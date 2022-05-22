@@ -3,7 +3,7 @@ version: "3.9"
 
 networks:
   loki: {}
-  traefik_public:
+  traefik-public:
     external: true
 
 volumes:
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     networks:
       - loki
-      - traefik_public
+      - traefik-public
     volumes:
       - "grafana_logs:/logs"
       - "grafana_storage:/var/lib/grafana"

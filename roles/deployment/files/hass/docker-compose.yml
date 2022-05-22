@@ -5,14 +5,14 @@ volumes:
   config:
 
 networks:
-  traefik_public:
+  traefik-public:
     external: true
 
 services:
   home-assistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     networks:
-      - traefik_public
+      - traefik-public
     volumes:
       - config:/config
       - ./s6/run:/etc/services.d/home-assistant/run
