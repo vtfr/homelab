@@ -17,10 +17,8 @@ services:
       # Static and dynamic configurations
       - "./config/traefik.yml:/etc/traefik/traefik.yml:ro"
       - "./config/dynamic:/config/dynamic:ro"
-
-      # SSL private keys for Lets Encryps
+      # SSL private keys for Let's Encrypt
       - "acme:/acme"
-
       # Docker socket for docker provider
       - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
