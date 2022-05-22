@@ -19,3 +19,4 @@
     - { role: deployment, project: unifi }
     - { role: deployment, project: heimdall }
     - { role: deployment, project: experiments }
+    - { role: deployment, project: monitoring }
