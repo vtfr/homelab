@@ -8,6 +8,13 @@
 
 - name: Install management utilities
   apt:
-    name:
-      - htop
+    name: htop
     state: present
+
+- name: Install unattended upgrades packages
+  apt:
+    name:
+      - unattended-upgrades
+      - apt-listchanges
+    state: present
+
