@@ -16,7 +16,6 @@
     - { role: deployment, project: traefik, networks: [ "traefik-public" ] }
     - { role: deployment, project: monitoring }
     - { role: deployment, project: hass }
-    - { role: deployment, project: nextcloud }
     - { role: deployment, project: unifi }
     - { role: deployment, project: heimdall }
     - { role: deployment, project: experiments }
