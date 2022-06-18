@@ -1,0 +1,11 @@
+http:
+  routers:
+    nextcloud:
+      rule: "Host(`nextcloud.{{ domain }}`)"
+      service: "nextcloud"
+
+  services:
+    nextcloud:
+      loadBalancer:
+        servers:
+        - url: "https://{{ nextcloud_host }}"
