@@ -8,4 +8,4 @@ http:
     truenas:
       loadBalancer:
         servers:
-        - url: "http://{{ storage_host }}"
+        - url: "http://{{ storage_host }}:80"

@@ -1,5 +1,0 @@
----
-- name: restart project
-  community.docker.docker_compose:
-    project_src: "{{ docker_compose_dir }}/{{ project }}"
-    restarted: true

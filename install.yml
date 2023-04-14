@@ -1,13 +1,13 @@
 - hosts: all
   become: yes
   roles:
-    - common/infrastructure
+    - common/infra
 
-- hosts: plex
-  become: yes
-  roles:
-    - common/storage
-    - plex
+#- hosts: plex
+#  become: yes
+#  roles:
+#    - { role: common/storage, shares: "{{plex_shares}}" }
+#    - plex
 
 - hosts: compute
   become: yes
@@ -18,4 +18,3 @@
     - { role: deployment, project: hass }
     - { role: deployment, project: unifi }
     - { role: deployment, project: heimdall }
-    - { role: deployment, project: experiments }

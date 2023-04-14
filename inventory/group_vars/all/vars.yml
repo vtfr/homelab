@@ -5,16 +5,12 @@ domain: "{{ secret_domain }}"
 domain_wildcard: "{{ secret_domain_wildcard }}"
 
 storage_host: "truenas.home.lan"
-nextcloud_host: "nextcloud.home.lan"
 
 storage_user_uid: "1010"
 storage_user_name: "services"
-storage_directories: "{{ secret_storage_directories }}"
+plex_shares: "{{ secret_plex_shares }}"
 
 traefik_cf_api_email: "{{ secret_traefik_cf_api_email }}"
 traefik_cf_api_key: "{{ secret_traefik_cf_api_key }}"
 traefik_cf_dns_api_token: "{{ secret_traefik_cf_dns_api_token }}"
 traefik_lets_encrypt_email: "{{ secret_traefik_lets_encrypt_email }}"
-
-experiments_postgres_user: "{{ secret_experiments_postgres_user }}"
-experiments_postgres_pass: "{{ secret_experiments_postgres_pass }}"

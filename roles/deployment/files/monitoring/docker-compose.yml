@@ -2,14 +2,14 @@
 version: "3.9"
 
 networks:
-  loki: {}
+  loki:
   traefik-public:
     external: true
 
 volumes:
-  grafana_logs: {}
-  grafana_storage: {}
-  loki_storage: {}
+  grafana_logs:
+  grafana_storage:
+  loki_storage:
 
 services:
   loki:

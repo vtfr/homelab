@@ -8,4 +8,4 @@ http:
     nextcloud:
       loadBalancer:
         servers:
-        - url: "https://{{ nextcloud_host }}"
+        - url: "https://{{ storage_host }}:8282"

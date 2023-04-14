@@ -17,4 +17,4 @@
     path: "{{ item.path }}"
     src: "{{ storage_host }}:{{ item.src }}"
     opts: rw,nolock
-  loop: "{{ storage_directories }}"
+  loop: "{{ shares }}"
