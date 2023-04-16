@@ -1,0 +1,12 @@
+---
+http:
+  routers:
+    photoprism:
+      rule: "Host(`photoprism.{{ domain }}`)"
+      service: "photoprism"
+
+  services:
+    photoprism:
+      loadBalancer:
+        servers:
+        - url: "http://{{ storage_host }}:20800"

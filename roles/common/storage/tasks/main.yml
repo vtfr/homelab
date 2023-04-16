@@ -3,18 +3,38 @@
   apt:
     name: nfs-common
 
-- name: Configure storage user
-  user:
-    name: "{{ storage_user_name }}"
-    uid: "{{ storage_user_uid }}"
+- name: Create storage group
+  group:
+    name: "{{ storage.user.name }}"
+    gid: "{{ storage.user.gid }}"
     state: present
-    comment: The user used remote storage
 
-- name: Configure the service shares
+- name: Create storage user
+  user:
+    name: "{{ storage.user.name }}"
+    group: "{{ storage.user.name }}"
+    uid: "{{ storage.user.uid }}"
+    state: present
+
+- name: Create mount path
+  file:
+    path: "{{ storage.share.mount }}"
+    state: directory
+    recurse: yes
+
+- name: Mount shares
   mount:
     state: mounted
     fstype: nfs
-    path: "{{ item.path }}"
-    src: "{{ storage_host }}:{{ item.src }}"
+    path: "{{ storage.share.mount }}"
+    src: "{{ storage.share.src }}"
     opts: rw,nolock
-  loop: "{{ shares }}"
+
+- name: Create share directories
+  file:
+    path: "{{ storage.share.mount }}/{{ item }}"
+    owner: "{{ storage.user.name }}"
+    group: "{{ storage.user.name }}"
+    state: directory
+    recurse: yes
+  loop: "{{ storage.directories }}"

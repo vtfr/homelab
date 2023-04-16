@@ -6,3 +6,7 @@
 
 # Vault password file
 .vault.pass
+
+# Become password file
+.become.pass
+

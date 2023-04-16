@@ -1,8 +1,4 @@
 ---
-
-log:
-  level: DEBUG
-
 serversTransport:
   insecureSkipVerify: true
 
@@ -37,7 +33,7 @@ entryPoints:
 certificatesResolvers:
   lecf:
     acme:
-      email: "{{ secret_traefik_lets_encrypt_email }}"
+      email: "{{ traefik_lets_encrypt_email }}"
       storage: "/acme/acme.json"
       dnsChallenge:
         provider: "cloudflare"

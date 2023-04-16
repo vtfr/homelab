@@ -3,3 +3,6 @@ cargo.home.lan
 
 [plex]
 plex.home.lan
+
+[seed]
+seed.home.lan

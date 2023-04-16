@@ -1,20 +1,48 @@
+---
 - hosts: all
   become: yes
   roles:
     - common/infra
 
-#- hosts: plex
-#  become: yes
-#  roles:
-#    - { role: common/storage, shares: "{{plex_shares}}" }
-#    - plex
-
 - hosts: compute
   become: yes
   roles:
-    - common/docker
-    - { role: deployment, project: traefik, networks: [ "traefik-public" ] }
-    - { role: deployment, project: monitoring }
-    - { role: deployment, project: hass }
-    - { role: deployment, project: unifi }
-    - { role: deployment, project: heimdall }
+    - { role: common/service, service: registry }
+    - { role: common/service, service: traefik, networks: [ "traefik-public" ] }
+    - { role: common/service, service: monitoring }
+    - { role: common/service, service: hass }
+    - { role: common/service, service: unifi }
+    - { role: common/service, service: heimdall }
+
+- hosts: seed
+  become: yes
+  roles:
+    - role: common/storage
+      storage:
+        user:
+          name: qbittorr
+          uid: 	3001
+          gid: 	3001
+        share:
+          src: "{{ storage_host }}:/mnt/slow/seed"
+          mount: /mnt/seed
+        directories:
+          - downloads
+    - role: common/service
+      service: seed
+
+- hosts: plex
+  become: yes
+  roles:
+    - role: common/storage
+      storage:
+        user:
+          name: plex
+          uid: 	3002
+          gid: 	3002
+        share:
+          src: "{{ storage_host }}:/mnt/slow/plex"
+          mount: /mnt/plex
+        directories:
+          - content
+    - role: plex
