@@ -5,20 +5,20 @@
 
 - name: Create storage group
   group:
-    name: "{{ storage.user.name }}"
-    gid: "{{ storage.user.gid }}"
+    name: "{{ owner.name }}"
+    gid: "{{ owner.gid }}"
     state: present
 
 - name: Create storage user
   user:
-    name: "{{ storage.user.name }}"
-    group: "{{ storage.user.name }}"
-    uid: "{{ storage.user.uid }}"
+    name: "{{ owner.name }}"
+    group: "{{ owner.name }}"
+    uid: "{{ owner.uid }}"
     state: present
 
 - name: Create mount path
   file:
-    path: "{{ storage.share.mount }}"
+    path: "{{ share.mount }}"
     state: directory
     recurse: yes
 
@@ -26,15 +26,15 @@
   mount:
     state: mounted
     fstype: nfs
-    path: "{{ storage.share.mount }}"
-    src: "{{ storage.share.src }}"
+    path: "{{ share.mount }}"
+    src: "{{ share.src }}"
     opts: rw,nolock
 
-- name: Create share directories
+- name: Create share {{ item }} directory
   file:
-    path: "{{ storage.share.mount }}/{{ item }}"
-    owner: "{{ storage.user.name }}"
-    group: "{{ storage.user.name }}"
+    path: "{{ share.mount }}/{{ item }}"
+    owner: "{{ owner.name }}"
+    group: "{{ owner.name }}"
     state: directory
     recurse: yes
-  loop: "{{ storage.directories }}"
+  with_items: "{{ directories | default('[]') }}"
