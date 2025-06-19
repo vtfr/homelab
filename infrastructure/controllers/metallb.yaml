@@ -25,6 +25,8 @@ spec:
       interval: 1m
   install:
     createNamespace: true
+  crds:
+    install: true
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
