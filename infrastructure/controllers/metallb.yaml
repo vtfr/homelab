@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -27,21 +28,3 @@ spec:
     createNamespace: true
   crds:
     install: true
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: homelab-pool
-  namespace: metallb-system
-spec:
-  addresses:
-    - 10.0.0.110/32
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: homelab-l2
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-    - homelab-pool
