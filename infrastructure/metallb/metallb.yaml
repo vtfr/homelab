@@ -42,5 +42,3 @@ spec:
     timeout: 10m
     remediation:
       retries: 3
-  values:
-    # MetalLB configuration will be applied via separate config manifests
