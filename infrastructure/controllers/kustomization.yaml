@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - namespace-metallb.yaml
   - metallb.yaml
+  - namespace-traefik.yaml
+  - traefik.yaml

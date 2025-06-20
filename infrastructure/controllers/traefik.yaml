@@ -1,0 +1,58 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: traefik
+  namespace: flux-system
+spec:
+  url: https://traefik.github.io/charts
+  interval: 2h
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: traefik
+      version: '26.1.0'
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+      interval: 1m
+  install:
+    createNamespace: true
+  values:
+    # Enable the dashboard
+    api:
+      dashboard: true
+      insecure: true
+    
+    # Service configuration - this will get the MetalLB IP
+    service:
+      type: LoadBalancer
+      
+    # Enable access logs for debugging
+    accessLog: {}
+    
+    # Basic entrypoints
+    ports:
+      web:
+        port: 8000
+        expose: true
+      websecure:
+        port: 8443
+        expose: true
+      traefik:
+        port: 9000
+        expose: true
+    
+    # Ingress configuration
+    ingressRoute:
+      dashboard:
+        enabled: true
+        entryPoints: ["traefik"] 
