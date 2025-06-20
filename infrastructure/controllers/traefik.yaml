@@ -15,6 +15,7 @@ metadata:
   namespace: traefik-system
 spec:
   interval: 5m
+  timeout: 10m
   chart:
     spec:
       chart: traefik
@@ -26,6 +27,13 @@ spec:
       interval: 1m
   install:
     createNamespace: true
+    timeout: 10m
+    remediation:
+      retries: 3
+  upgrade:
+    timeout: 10m
+    remediation:
+      retries: 3
   values:
     # Enable the dashboard
     api:
