@@ -26,5 +26,4 @@ spec:
       interval: 1m
   install:
     createNamespace: true
-  crds:
-    install: true
+    crds: CreateReplace
