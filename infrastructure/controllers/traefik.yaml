@@ -1,4 +1,9 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik-system
+---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
@@ -26,7 +31,6 @@ spec:
         namespace: flux-system
       interval: 1m
   install:
-    createNamespace: true
     timeout: 10m
     remediation:
       retries: 3
